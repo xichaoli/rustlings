@@ -1,11 +1,14 @@
 // enums2.rs
 // Execute `rustlings hint enums2` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+// 一个 Message 枚举，其每个成员都存储了不同数量和类型的值
 
 #[derive(Debug)]
 enum Message {
-    // TODO: define the different variants used below
+    Move { x: i32, y: i32},
+    Echo (String),
+    ChangeColor(u8, u8, u8),
+    Quit,
 }
 
 impl Message {
