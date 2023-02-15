@@ -3,13 +3,14 @@
 // You can put the expression for the second element where ??? is so that the test passes.
 // Execute `rustlings hint primitive_types6` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+// 元组索引
+// 另元组没有len（）方法，如何计算元组元素个数（元数）？
 
 #[test]
 fn indexing_tuple() {
     let numbers = (1, 2, 3);
     // Replace below ??? with the tuple indexing syntax.
-    let second = ???;
+    let second = numbers.1;
 
     assert_eq!(2, second,
         "This is not the 2nd number in the tuple!")
