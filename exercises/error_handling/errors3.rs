@@ -4,11 +4,11 @@
 // Why not? What should we do to fix it?
 // Execute `rustlings hint errors3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+// Ok(())
 
 use std::num::ParseIntError;
 
-fn main() {
+fn main() -> Result<(), ParseIntError>{
     let mut tokens = 100;
     let pretend_user_input = "8";
 
@@ -20,6 +20,25 @@ fn main() {
         tokens -= cost;
         println!("You now have {} tokens.", tokens);
     }
+
+    Ok(())
+
+    // use match:
+    // main的签名不要改：fn main() {
+    //
+    // let cost = total_cost(pretend_user_input);
+    //
+    // match cost {
+    //     Ok(cost) => {
+    //         if cost > tokens {
+    //             println!("You can't afford that many!");
+    //         } else {
+    //             tokens -= cost;
+    //             println!("You now have {} tokens.", tokens);
+    //         }
+    //     },
+    //     Err(e) => println!("{e}"),
+    // }
 }
 
 pub fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
