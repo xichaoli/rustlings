@@ -7,10 +7,14 @@
 // Consider what you can add to the Licensed trait.
 // Execute `rustlings hint traits3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+// 有时为 trait 中的某些或全部方法提供默认的行为，
+// 而不是在每个类型的每个实现中都定义自己的行为是很有用的。
+// 这样当为某个特定类型实现 trait 时，可以选择保留或重载每个方法的默认行为。
 
 pub trait Licensed {
-    fn licensing_info(&self) -> String;
+    fn licensing_info(&self) -> String {
+        String::from("Some information")
+    }
 }
 
 struct SomeSoftware {
