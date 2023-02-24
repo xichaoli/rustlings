@@ -8,7 +8,14 @@
 // This exercise is meant to show you what to expect when passing data to Cow.
 // Fix the unit tests by checking for Cow::Owned(_) and Cow::Borrowed(_) at the TODO markers.
 
-// I AM NOT DONE
+// 看不明白这个题目
+// 对于Cow, 需知道下面三种情况：
+// 借用数据，但是未调用 to_mut()，故不存在 clone 操作
+// 借用数据，调用 to_mut(), 发生 clone 操作
+// 所有权数据，调用 to_mut(), 不存在 clone 操作，因为具有该数据的所有权
+// 关键方法
+// to_mut(), 获取所有权数据的可变引用，无所有权时从借用数据中克隆
+// into_owned(), 提取所有权数据。
 
 use std::borrow::Cow;
 
@@ -44,7 +51,8 @@ mod tests {
         let slice = [0, 1, 2];
         let mut input = Cow::from(&slice[..]);
         match abs_all(&mut input) {
-            // TODO
+            Cow::Borrowed(_) => Ok(()),
+            _ => Err("Expected borrowed value"),
         }
     }
 
@@ -56,7 +64,8 @@ mod tests {
         let slice = vec![0, 1, 2];
         let mut input = Cow::from(slice);
         match abs_all(&mut input) {
-            // TODO
+            Cow::Owned(_) => Ok(()),
+            _ => Err("Expected owned value"),
         }
     }
 
@@ -68,7 +77,8 @@ mod tests {
         let slice = vec![-1, 0, 1];
         let mut input = Cow::from(slice);
         match abs_all(&mut input) {
-            // TODO
+            Cow::Owned(_) => Ok(()),
+            _ => Err("Expected owned value"),
         }
     }
 }
