@@ -6,7 +6,6 @@
 // The program should wait until all the spawned threads have finished and
 // should collect their return values into a vector.
 
-// I AM NOT DONE
 
 use std::thread;
 use std::time::{Duration, Instant};
@@ -21,10 +20,16 @@ fn main() {
             start.elapsed().as_millis()
         }));
     }
+    // 这时 handles 内容如下：
+    // [JoinHandle { .. }, JoinHandle { .. }, JoinHandle { .. }, JoinHandle { .. },
+    // JoinHandle { .. }, JoinHandle { .. }, JoinHandle { .. }, JoinHandle { .. },
+    // JoinHandle { .. }, JoinHandle { .. }]
 
     let mut results: Vec<u128> = vec![];
     for handle in handles {
         // TODO: a struct is returned from thread::spawn, can you use it?
+        // handle执行完成后，返回值被push到results
+        results.push(handle.join().unwrap());
     }
 
     if results.len() != 10 {
